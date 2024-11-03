@@ -1,6 +1,7 @@
 package de.lind3.PDFly.service;
 
 import de.lind3.PDFly.exception.InvalidFileTypeException;
+import de.lind3.PDFly.exception.InvalidPageException;
 import de.lind3.PDFly.utils.PdfUtils;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.springframework.stereotype.Service;
@@ -22,10 +23,16 @@ public class RemoveService {
         PDDocument document = PdfUtils.convertMultipartFileToPDDocument(file);
         List<Integer> pagesToRemove = PdfUtils.parsePageNumbers(pageNumbers);
 
-        // Need to iterate list from behind, otherwise indexes of pages will change.
-        for(int i = pagesToRemove.size(); i > 0; i--){
-            document.removePage(i);
+
+        try{
+            // Need to iterate list from behind, otherwise indexes of pages will change.
+            for(int i = pagesToRemove.size(); i > 0; i--){
+                document.removePage(i);
+            }
+        }catch (IndexOutOfBoundsException ex){
+            throw new InvalidPageException("Invalid page number(s), please try again.");
         }
+
 
         return PdfUtils.convertPDDocumentToByteArray(document);
     }
