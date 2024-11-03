@@ -52,12 +52,12 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(IOException.class)
     public ModelAndView handleIOException(IOException ex){
-        return createModelAndViewObject(ex, HttpStatus.INTERNAL_SERVER_ERROR);
+        return createModelAndViewObject(new Exception("Internal error."), HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
     @ExceptionHandler(Exception.class)
     public ModelAndView handleGenericException(Exception ex){
-        return createModelAndViewObject(ex, HttpStatus.INTERNAL_SERVER_ERROR);
+        return createModelAndViewObject(new Exception("Internal error."), HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
 
