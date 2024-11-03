@@ -1,5 +1,6 @@
 package de.lind3.PDFly.service;
 
+import de.lind3.PDFly.exception.EmptyDocumentException;
 import de.lind3.PDFly.exception.InvalidFileTypeException;
 import de.lind3.PDFly.exception.InvalidPageException;
 import de.lind3.PDFly.utils.PdfUtils;
@@ -18,6 +19,9 @@ public class CutService {
 
     public byte[] cutPdfAndMerge(MultipartFile file, String pageNumbers) throws IOException {
 
+        if(file == null || file.isEmpty()){
+            throw new EmptyDocumentException("Oops! It looks like you forgot to upload the document.");
+        }
         // Only accept pdf files.
         if (!Objects.equals(file.getContentType(), "application/pdf")) {
             throw new InvalidFileTypeException("Invalid file type, PDFs only.");
@@ -41,6 +45,11 @@ public class CutService {
 
 
     public byte[] cutPdf(MultipartFile file, String pageNumbers) throws IOException {
+
+        if(file == null || file.isEmpty()){
+            throw new EmptyDocumentException("Oops! It looks like you forgot to upload the document.");
+        }
+
         if (!Objects.equals(file.getContentType(), "application/pdf")) {
             throw new IllegalStateException("PDF files only!");
         }

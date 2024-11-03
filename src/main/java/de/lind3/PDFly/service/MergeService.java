@@ -8,6 +8,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.util.Arrays;
 
 
 @Service
@@ -15,8 +16,8 @@ public class MergeService {
 
     public byte[] mergePdfs(MultipartFile[] files) throws IOException {
 
-        if(files.length == 0){
-            throw new NoFileUploadedException("No files uploaded");
+        if(files == null || files.length == 0 || Arrays.stream(files).allMatch(MultipartFile::isEmpty)){
+            throw new NoFileUploadedException("Oops! It looks like you forgot to upload the documents.");
         }
 
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
