@@ -1,13 +1,54 @@
 package de.lind3.PDFly.exception;
 
-public class GlobalExceptionHandler extends RuntimeException{
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.ControllerAdvice;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.servlet.ModelAndView;
 
-    public GlobalExceptionHandler(String message) {
-        super(message);
+import java.io.IOException;
+
+@ControllerAdvice
+public class GlobalExceptionHandler {
+
+    private ModelAndView createModelAndViewObject(Exception ex, HttpStatus status){
+        ModelAndView modelAndView = new ModelAndView("error");
+        modelAndView.setStatus(status);
+        modelAndView.addObject("errorMessage", ex.getMessage());
+        modelAndView.addObject("statusCode", status.value());
+        return modelAndView;
     }
-    public GlobalExceptionHandler(String message, Throwable cause) {
-        super(message, cause);
+    @ExceptionHandler(InvalidPageException.class)
+    public ModelAndView handleInvalidPageException(InvalidPageException ex){
+        return createModelAndViewObject(ex, HttpStatus.BAD_REQUEST);
     }
+
+    @ExceptionHandler(InvalidFileTypeException.class)
+    public ModelAndView handleInvalidFileTypeException(InvalidFileTypeException ex){
+        return createModelAndViewObject(ex, HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(EmptyDocumentException.class)
+    public ModelAndView handleEmptyDocumentException(EmptyDocumentException ex){
+        return createModelAndViewObject(ex, HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(InvalidCharactersException.class)
+    public ModelAndView handleInvalidCharactersException(InvalidCharactersException ex){
+        return createModelAndViewObject(ex, HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(IOException.class)
+    public ModelAndView handleIOException(IOException ex){
+        return createModelAndViewObject(ex, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+
+    @ExceptionHandler(Exception.class)
+    public ModelAndView handleGenericException(Exception ex){
+        return createModelAndViewObject(ex, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+
+
 
 
 }

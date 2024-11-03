@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>PDFly | Error</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" th:href="@{/styles.css}" />
+  <link rel="stylesheet" th:href="@{/error.css}" />
+  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css'>
+  <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Arvo'>
+</head>
+<body>
+
+<div th:insert="/fragments/navbar.html :: navbar"> </div>
+
+<section class="page_404">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12 ">
+        <div class="col-sm-10 col-sm-offset-1  text-center">
+          <div class="four_zero_four_bg">
+            <h1 class="text-center " th:text="${statusCode}"></h1>
+
+
+          </div>
+
+          <div class="contant_box_404">
+            <h3 class="h2">
+              Looks like you're lost
+            </h3>
+
+            <p th:text="${errorMessage}"></p>
+
+            <a th:href="@{/}" class="link_404">Go to Home</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+</div>
+
+<!-- Optional: JavaScript dependencies for Bootstrap -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
