@@ -3,6 +3,7 @@ package de.lind3.PDFly.controller;
 import de.lind3.PDFly.exception.NoFileUploadedException;
 import de.lind3.PDFly.service.CutService;
 import de.lind3.PDFly.service.MergeService;
+import de.lind3.PDFly.service.RemoveService;
 import de.lind3.PDFly.utils.PdfUtils;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,11 +27,13 @@ import java.util.List;
 public class PdfController {
     private final CutService cutService;
     private final MergeService mergeService;
+    private final RemoveService removeService;
 
     @Autowired
-    public PdfController(CutService cutService, MergeService mergeService) {
+    public PdfController(CutService cutService, MergeService mergeService, RemoveService removeService) {
         this.cutService = cutService;
         this.mergeService = mergeService;
+        this.removeService = removeService;
     }
 
     @GetMapping
@@ -40,6 +43,10 @@ public class PdfController {
     @GetMapping("/merge")
     public String merge(){
         return "merge.html";
+    }
+    @GetMapping("/remove")
+    public String remove(){
+        return "remove.html";
     }
 
 
@@ -77,6 +84,19 @@ public class PdfController {
 
         HttpHeaders headers = new HttpHeaders();
         headers.add("Content-Disposition", "attachment; filename=merged.pdf");
+        return new ResponseEntity<>(bytes, headers, HttpStatus.OK);
+    }
+
+
+    @PostMapping("/remove")
+    public ResponseEntity<byte[]> removePage(
+            @RequestParam("file") MultipartFile file,
+            @RequestParam("pageNumbers") String pageNumbers
+    ) throws IOException {
+        byte[] bytes = removeService.removePage(file, pageNumbers);
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Content-Disposition", "attachment; filename=removed.pdf");
         return new ResponseEntity<>(bytes, headers, HttpStatus.OK);
     }
 
