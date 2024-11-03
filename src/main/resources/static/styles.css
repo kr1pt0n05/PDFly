@@ -1,0 +1,41 @@
+ body {
+            background-color: #f8f9fa; /* Light background color */
+        }
+        .navbar {
+            background-color: #4696e5; /* Original blue */
+        }
+        .navbar-brand, .nav-link {
+            color: #ffffff !important; /* White text */
+        }
+        .navbar-brand:hover, .nav-link:hover {
+            color: #A1C8F1 !important; /* Lighter hover color */
+        }
+        .container {
+            max-width: 600px;
+            margin-top: 50px;
+            padding: 20px;
+            background-color: #ffffff; /* White container for content */
+            border-radius: 8px; /* Rounded corners */
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+        }
+        h1 {
+            color: #4696e5; /* Headline color */
+        }
+        .form-group label {
+            color: #333333; /* Darker label color */
+        }
+        .btn-primary {
+            background-color: #75b3ee; /* Light blue button */
+            border-color: #75b3ee;
+        }
+        .btn-primary:hover {
+            background-color: #4696e5; /* Darker blue on hover */
+            border-color: #4696e5;
+        }
+        .alert {
+            margin-top: 20px;
+        }
+        .list-group-item {
+            background-color: #f1f1f1; /* Light gray for uploaded files */
+            border: none; /* Remove border */
+        }
