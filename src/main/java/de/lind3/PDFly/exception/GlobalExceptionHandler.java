@@ -4,6 +4,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.multipart.MaxUploadSizeExceededException;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.io.IOException;
@@ -18,6 +19,12 @@ public class GlobalExceptionHandler {
         modelAndView.addObject("statusCode", status.value());
         return modelAndView;
     }
+
+    @ExceptionHandler(MaxUploadSizeExceededException.class)
+    public ModelAndView handleMaxUploadSizeExceededException(MaxUploadSizeExceededException ex){
+        return createModelAndViewObject(ex, HttpStatus.PAYLOAD_TOO_LARGE);
+    }
+
     @ExceptionHandler(InvalidPageException.class)
     public ModelAndView handleInvalidPageException(InvalidPageException ex){
         return createModelAndViewObject(ex, HttpStatus.BAD_REQUEST);
