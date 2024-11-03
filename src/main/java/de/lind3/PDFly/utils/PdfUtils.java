@@ -1,4 +1,4 @@
-package de.lind3.PDF_Express.utils;
+package de.lind3.PDFly.utils;
 
 import org.apache.pdfbox.Loader;
 import org.apache.pdfbox.pdmodel.PDDocument;

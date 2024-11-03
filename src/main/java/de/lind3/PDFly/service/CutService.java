@@ -1,6 +1,6 @@
-package de.lind3.PDF_Express.service;
+package de.lind3.PDFly.service;
 
-import de.lind3.PDF_Express.utils.PdfUtils;
+import de.lind3.PDFly.utils.PdfUtils;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDPage;
 import org.springframework.stereotype.Service;

@@ -1,13 +1,13 @@
-package de.lind3.PDF_Express;
+package de.lind3.PDFly;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class PdfExpressApplication {
+public class PDFlyApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(PdfExpressApplication.class, args);
+		SpringApplication.run(PDFlyApplication.class, args);
 	}
 
 }

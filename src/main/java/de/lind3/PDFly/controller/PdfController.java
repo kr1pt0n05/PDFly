@@ -1,10 +1,9 @@
-package de.lind3.PDF_Express.controller;
+package de.lind3.PDFly.controller;
 
-import de.lind3.PDF_Express.service.CutService;
+import de.lind3.PDFly.service.CutService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;

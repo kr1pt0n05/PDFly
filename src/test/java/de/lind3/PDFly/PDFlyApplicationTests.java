@@ -1,10 +1,10 @@
-package de.lind3.PDF_Express;
+package de.lind3.PDFly;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class PdfExpressApplicationTests {
+class PDFlyApplicationTests {
 
 	@Test
 	void contextLoads() {
