@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-  <title>PDFly | Cut PDF</title>
+  <title>PDFly | Merge PDF</title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <link rel="stylesheet" th:href="@{/styles.css}" />
 </head>
@@ -13,18 +13,10 @@
   <h1 class="text-center">Cut PDF</h1>
 
   <!-- PDF Upload Form -->
-  <form th:action="@{/}" method="post" enctype="multipart/form-data">
+  <form th:action="@{/merge}" method="post" enctype="multipart/form-data">
     <div class="form-group">
       <label for="pdfFile">Choose PDF file to upload</label>
-      <input type="file" class="form-control-file" id="pdfFile" name="file" accept=".pdf" required>
-    </div>
-    <div class="form-group">
-      <label for="pageNumbers">Pages to cut</label>
-      <input type="text" class="form-control" id="pageNumbers" name="pageNumbers" placeholder="For example: 1-3, 5, 7-10" required>
-    </div>
-    <div class="form-group form-check">
-      <input type="checkbox" class="form-check-input" id="mergeFiles" name="mergeFiles">
-      <label class="form-check-label" for="mergeFiles">Merge split PDFs after cutting</label>
+      <input type="file" class="form-control-file" id="pdfFile" name="files" accept=".pdf" multiple required>
     </div>
     <button type="submit" class="btn btn-primary btn-block">Upload PDF</button>
   </form>

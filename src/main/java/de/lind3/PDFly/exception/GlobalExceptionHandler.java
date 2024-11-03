@@ -20,6 +20,11 @@ public class GlobalExceptionHandler {
         return modelAndView;
     }
 
+    @ExceptionHandler(NoFileUploadedException.class)
+    public ModelAndView handleNoFileUploadedException(NoFileUploadedException ex){
+        return createModelAndViewObject(ex, HttpStatus.BAD_REQUEST);
+    }
+
     @ExceptionHandler(MaxUploadSizeExceededException.class)
     public ModelAndView handleMaxUploadSizeExceededException(MaxUploadSizeExceededException ex){
         return createModelAndViewObject(ex, HttpStatus.PAYLOAD_TOO_LARGE);
